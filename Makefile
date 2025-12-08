@@ -1,5 +1,9 @@
 SHELL := /bin/bash
 
+# Añadimos esto para que make sepa que estos son comandos, no archivos.
+# Esto es CRUCIAL para 'artisan', ya que el archivo 'artisan' existe en la carpeta.
+.PHONY: up down reset sh logs install migrate test artisan
+
 up:
 	docker compose up -d --build
 
@@ -38,4 +42,3 @@ test:
 artisan:
 	@docker compose run --rm app php artisan $(CMD)
 	@true
-
